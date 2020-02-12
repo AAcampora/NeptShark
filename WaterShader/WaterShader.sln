@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WaterShader", "WaterShader\WaterShader.vcxproj", "{2732C134-D04F-4BBA-BD7C-444E9894CCB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E8C1F894-9849-4F73-BF4D-D822EB9F68A4}"
+	ProjectSection(SolutionItems) = preProject
+		WaterShader\frag.glsl = WaterShader\frag.glsl
+		WaterShader\vert.glsl = WaterShader\vert.glsl
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2732C134-D04F-4BBA-BD7C-444E9894CCB3}.Debug|x64.ActiveCfg = Debug|x64
+		{2732C134-D04F-4BBA-BD7C-444E9894CCB3}.Debug|x64.Build.0 = Debug|x64
+		{2732C134-D04F-4BBA-BD7C-444E9894CCB3}.Debug|x86.ActiveCfg = Debug|Win32
+		{2732C134-D04F-4BBA-BD7C-444E9894CCB3}.Debug|x86.Build.0 = Debug|Win32
+		{2732C134-D04F-4BBA-BD7C-444E9894CCB3}.Release|x64.ActiveCfg = Release|x64
+		{2732C134-D04F-4BBA-BD7C-444E9894CCB3}.Release|x64.Build.0 = Release|x64
+		{2732C134-D04F-4BBA-BD7C-444E9894CCB3}.Release|x86.ActiveCfg = Release|Win32
+		{2732C134-D04F-4BBA-BD7C-444E9894CCB3}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72805E60-B272-42B1-BF10-6836386391CD}
+	EndGlobalSection
+EndGlobal
