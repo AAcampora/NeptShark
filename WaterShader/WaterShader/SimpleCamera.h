@@ -11,7 +11,7 @@
 #include <vector>
 #include <fstream>
 
-
+using namespace glm;
 class SimpleCamera 
 {
 
@@ -25,13 +25,13 @@ public:
 	GLuint modelMatrixLocation;
 	GLuint viewMatrixLocation;
 	GLuint projectionMatrixLocation;
-	glm::vec3 position;
-	glm::mat4 translation;
-	glm::vec3 cameraPosition;
-	glm::vec3 cameraTarget;
-	glm::vec3 cameraUP;
-	glm::mat4 view;
-	glm::mat4 projection;
+	vec3 position;
+	mat4 translation;
+	vec3 cameraPosition;
+	vec3 cameraTarget;
+	vec3 cameraUP;
+	mat4 view;
+	mat4 projection;
 
 
 

@@ -71,6 +71,20 @@ int main(int argc, char* args[])
 				case SDLK_ESCAPE:
 					running = false;
 					break;
+				case SDLK_F4:
+					if (!Nept.fullscreen)
+					{
+
+						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+						Nept.fullscreen = true;
+						/*if (Nept.fullscreen)
+						{
+							SDL_SetWindowFullscreen(window, 0);
+							Nept.fullscreen = false;
+						}*/
+					}
+					
+					
 				}
 
 			}

@@ -1,11 +1,2 @@
-﻿  Glew_initialiser.cpp
-  main.cpp
-  NeptShark.cpp
-  SDL_initialiser.cpp
-  Shaders.cpp
-  SimpleCamera.cpp
-  Window_Spawner.cpp
-  Generating Code...
-D:\Repo\NewWaterShader\WaterShader\WaterShader\NeptShark.cpp(30,33): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-     Creating library D:\Repo\NewWaterShader\WaterShader\x64\Debug\WaterShader.lib and object D:\Repo\NewWaterShader\WaterShader\x64\Debug\WaterShader.exp
-  WaterShader.vcxproj -> D:\Repo\NewWaterShader\WaterShader\x64\Debug\WaterShader.exe
+﻿  main.cpp
+  WaterShader.vcxproj -> D:\Alessio's repo\NeptShark\WaterShader\x64\Debug\WaterShader.exe

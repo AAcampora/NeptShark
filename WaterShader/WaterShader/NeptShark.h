@@ -28,6 +28,8 @@ public:
 	static void VertexSetup(GLuint VertexArrayID);
 	void SetColors();
 	void RenderTriangle(GLuint triangleVerBuff);
+	void FullScreen();
+	bool fullscreen;
 private:
 
 

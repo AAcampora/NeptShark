@@ -3,7 +3,7 @@
 
 void WindowInit::WindowSpawner(SDL_Window ** window) {
 	//this function creates and stores a pointer to a Window. It takes a Title, a position of the window, the dimensions and the flags of how it's displayed
-	*window = SDL_CreateWindow("SDL2 Alessio's Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_OPENGL);
+	*window = SDL_CreateWindow("SDL2 Alessio's Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_OPENGL);
 
 	//check if the window is created, remeber to always check if everything has been created
 	if (window == nullptr)	//if the window exist, it would be stored in memory, check if the window exist in memory

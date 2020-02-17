@@ -1,4 +1,4 @@
-#include "NeptShark.h"
+ #include "NeptShark.h"
 
 
 
@@ -12,6 +12,9 @@ NeptShark::NeptShark(SDL_Window** window)
 
 	//for Glew Initialisation, please see Glew initialiser.h//
 	GlewInit::GlewInitialiser(window);
+
+	fullscreen = false;
+
 
 }
 
@@ -55,4 +58,9 @@ void NeptShark::RenderTriangle(GLuint triangleVerBuff)
 
 	glDrawArrays(GL_TRIANGLES, 0, 3); //specifies what kidn of primitives to renderd. we provide a starting index, then we provide with the number of vertices
 	glDisableVertexAttribArray(0); //we now disable our ability to draw, so we don't draw anything else unecessary.
+}
+
+void NeptShark::FullScreen()
+{
+
 }

@@ -1,4 +1,5 @@
 #include "SimpleCamera.h"
+using namespace glm;
 
 SimpleCamera::SimpleCamera(GLint basicProgramID)
 {
@@ -7,25 +8,25 @@ SimpleCamera::SimpleCamera(GLint basicProgramID)
 	projectionMatrixLocation = glGetUniformLocation(basicProgramID, "projection");
 	//glUniform3f(modelMatrixLocation, 1, 2, 3);
 	
-	position = glm::vec3(0.0f, 1.0f, 0.0f);
+	position = vec3(0.0f, 1.0f, 0.0f);
 	//translation matrix set to identity
-	translation = glm::mat4(1.0f);
+	translation = mat4(1.0f);
 
-	translation = glm::translate(translation, position);
+	translation = translate(translation, position);
 
-	cameraPosition = glm::vec3(0.0f, 0.0f, -10.0f);
+	cameraPosition = vec3(0.0f, 0.0f, -10.0f);
 	cameraTarget = position;
-	cameraUP = glm::vec3(0.0f, 1.0f, 0.0f);
-	view = glm::lookAt(cameraPosition, cameraTarget, cameraUP);
+	cameraUP = vec3(0.0f, 1.0f, 0.0f);
+	view = lookAt(cameraPosition, cameraTarget, cameraUP);
 
-	projection = glm::perspective(glm::radians(45.0f), (float)1280 / (float)720,
+	projection = perspective(radians(45.0f), (float)1280 / (float)720,
 		0.1f, 100.0f);
 }
 
 
 void SimpleCamera::GenCameraUniforms()
 {
-	glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, glm::value_ptr(translation));
-	glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, glm::value_ptr(view));
-	glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(projection));
+	glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, value_ptr(translation));
+	glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, value_ptr(view));
+	glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, value_ptr(projection));
 }
