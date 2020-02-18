@@ -38,6 +38,7 @@
     <ClInclude Include="SDL_initialiser.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="SimpleCamera.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window_Spawner.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

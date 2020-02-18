@@ -6,6 +6,7 @@
 #include "NeptShark.h"
 #include"Shaders.h"
 #include "SimpleCamera.h"
+#include "Vertex.h"
 
 #include "SDL_initialiser.h"
 

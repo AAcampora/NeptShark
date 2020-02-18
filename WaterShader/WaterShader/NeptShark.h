@@ -5,6 +5,7 @@
 #include <SDL_opengl.h>//load open Gl
 #include"Shaders.h"
 #include "SimpleCamera.h"
+#include "Vertex.h"
 
 #include "SDL_initialiser.h"
 
@@ -24,6 +25,7 @@ class NeptShark
 {
 public:
 
+	GLuint elementBuffer;
 	NeptShark(SDL_Window** window);
 	static void VertexSetup(GLuint VertexArrayID);
 	void SetColors();

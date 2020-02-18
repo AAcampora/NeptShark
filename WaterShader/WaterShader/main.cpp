@@ -27,19 +27,28 @@ int main(int argc, char* args[])
 
 
 	//triangle buffer TODO ask brian how to extrapolate this
-	static const GLfloat g_vertex_buffer_data[] = { //this will buff the position of the vertixes on the window
-		-1.0f, -1.0f, 0.0f,
-		1.0f, -1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
+	Vertex verticies[] = 
+	{ //this will buff the position of the vertixes on the window
+		{1.0f, -1.0f, 0.0f, 1.0, 0.0f, 0.0f, 1.0f}, //vertex 0
+		{1.0f, 1.0f, 0.0f, 0.0, 1.0f, 0.0f, 1.0f}, //vertex 1
+		{-1.0f, 1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f},// vertex 2
+		{-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f} // vertex 3
 	};
 
 	glGenBuffers(1, &triangleVerBuff); //we create a buffer, and we store our triangle ID
 
 	glBindBuffer(GL_ARRAY_BUFFER, triangleVerBuff); //then we bind it as a vertex buffer
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW); //now we pass the vertices of our triangle to opengl
+	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex), verticies, GL_STATIC_DRAW); //now we pass the vertices of our triangle to opengl
 	//for the drawing of our triangle, go look the render section
 	
+	int indicies[] = { 0, 1, 2, 2, 3 ,0 };
+
+	
+	glGenBuffers(1, &Nept.elementBuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Nept.elementBuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * sizeof(indicies), indicies, GL_STATIC_DRAW);
+
 	SimpleCamera cam(basicProgramID);
 														//** Main Game Loop Section **//
 
@@ -99,6 +108,7 @@ int main(int argc, char* args[])
 
 		Nept.RenderTriangle(triangleVerBuff);
 
+
 		//update our window now
 		//remember. all the rendering behind this.
 		SDL_GL_SwapWindow(window);
@@ -110,7 +120,7 @@ int main(int argc, char* args[])
 	glDeleteProgram(basicProgramID);
 	glDeleteBuffers(1, &triangleVerBuff);
 	glDeleteVertexArrays(1, &VertexArrayID); //delete the VAO
-
+	glDeleteBuffers(1, &Nept.elementBuffer);
 	SDL_DestroyWindow(window); 
 	SDL_Quit();
 

@@ -2,10 +2,12 @@
 
 //** required a output value for binding with fragment 
 uniform vec3 MyVariable;
+in vec4 vertexColourOut;
 
-out vec3 colour;
+
+out vec4 colour;
 in vec4 myVariable;
 void main()
 {
-	colour = vec3(1.0, 0.0, 0.0);
+	colour = vertexColourOut;
 }
