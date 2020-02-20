@@ -19,27 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Glew_initialiser.cpp" />
+    <ClCompile Include="InitLibs.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NeptShark.cpp" />
-    <ClCompile Include="SDL_initialiser.cpp" />
     <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="SimpleCamera.cpp" />
-    <ClCompile Include="Window_Spawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="frag.glsl" />
     <None Include="vert.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Glew_Initialiser.h" />
+    <ClInclude Include="InitLibs.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NeptShark.h" />
-    <ClInclude Include="SDL_initialiser.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="SimpleCamera.h" />
     <ClInclude Include="Vertex.h" />
-    <ClInclude Include="Window_Spawner.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

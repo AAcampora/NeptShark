@@ -1,32 +1,158 @@
  #include "NeptShark.h"
 
 
+using namespace Nept;
 
-NeptShark::NeptShark(SDL_Window** window)
+basicRender::basicRender()
 {
 	//for sdl Initialisation, please see SDL_Initialiser.h
-	int SDLInitialiser();
-
-	//for the Window initialisation, please see WindowSpawner.h
-	WindowInit::WindowSpawner(window);
-
-	//for Glew Initialisation, please see Glew initialiser.h//
-	GlewInit::GlewInitialiser(window);
+	InitLibs libsInit;
+	libsInit.SDLInit();
+	InitWindow(&window);
+	libsInit.GlewInit(&window);
 
 	fullscreen = false;
 
+}
 
+void basicRender::InitWindow(SDL_Window **window)
+{
+	//this function creates and stores a pointer to a Window. It takes a Title, a position of the window, the dimensions and the flags of how it's displayed
+	*window = SDL_CreateWindow("SDL2 Alessio's Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_OPENGL);
+
+	//check if the window is created, remeber to always check if everything has been created
+	if (window == nullptr)	//if the window exist, it would be stored in memory, check if the window exist in memory
+	{
+		//show a message 
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Window has failed", SDL_GetError(), NULL);
+
+		//Close the library 
+		SDL_Quit();
+		//Close the application
+	}
+	return;
+}
+
+basicRender::~basicRender()
+{
+	//Destoy the window and quit SDL2, clean all the things you have created
+	glDeleteProgram(basicProgramID);
+	glDeleteBuffers(1, &triangleVerBuff);
+	glDeleteVertexArrays(1, &VertexArrayID); //delete the VAO
+	glDeleteBuffers(1, &elementBuffer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
 
 
-void NeptShark::VertexSetup(GLuint vertexArrayID)
+void basicRender::MainLoop()
+{
+
+	//** Buffer Section **//
+	VertexSetup(VertexArrayID);
+
+	//load our shader programs
+	GLint basicProgramID = MyShaderCreator::LoadShaders("vert.glsl", "frag.glsl");
+	if (basicProgramID < 0)
+	{
+		printf("Shaders %s and %s not loaded", "vert.glsl", "frag.glsl");
+	}
+
+
+	//triangle buffer TODO ask brian how to extrapolate this
+	Vertex verticies[] =
+	{ //this will buff the position of the vertixes on the window
+		{1.0f, -1.0f, 0.0f, 1.0, 0.0f, 0.0f, 1.0f}, //vertex 0
+		{1.0f, 1.0f, 0.0f, 0.0, 1.0f, 0.0f, 1.0f}, //vertex 1
+		{-1.0f, 1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f},// vertex 2
+		{-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f} // vertex 3
+	};
+
+	glGenBuffers(1, &triangleVerBuff); //we create a buffer, and we store our triangle ID
+
+	glBindBuffer(GL_ARRAY_BUFFER, triangleVerBuff); //then we bind it as a vertex buffer
+
+	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex), verticies, GL_STATIC_DRAW); //now we pass the vertices of our triangle to opengl
+	//for the drawing of our triangle, go look the render section
+
+	int indicies[] = { 0, 1, 2, 2, 3 ,0 };
+
+
+	glGenBuffers(1, &elementBuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * sizeof(indicies), indicies, GL_STATIC_DRAW);
+
+	SimpleCamera cam(basicProgramID);
+	//SDl event structure, this is a queue that contains all the event strutctures of library, it can read the events and place them in itself
+	//useful when you need to determinate a certain event.
+	while (running)
+	{
+		//pool for the events which have happend in this frame
+			//remember SDL_PollEvent requires a pointer value&
+		while (SDL_PollEvent(&ev))
+		{
+			//switch statement for any kind of message the event gives us
+			switch (ev.type)
+			{
+				//quit message, called when the window is closed
+			case SDL_QUIT:
+				running = false;
+				break;
+				//KEYDOWN message, called when a key has been pressed down
+			case SDL_KEYDOWN:
+				//check if a key has been pressed trough ev
+				switch (ev.key.keysym.sym)
+				{
+					//check if it was the escape key
+				case SDLK_ESCAPE:
+					running = false;
+					break;
+				case SDLK_F4:
+					if (fullscreen)
+					{
+
+						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+						fullscreen = true;
+						/*if (Nept.fullscreen)
+						{
+							SDL_SetWindowFullscreen(window, 0);
+							Nept.fullscreen = false;
+						}*/
+					}
+
+
+				}
+
+			}
+		}
+
+
+		SetColors();
+		//draw using this program
+		glUseProgram(basicProgramID);
+
+		//send constant uniforms to shader 
+		cam.GenCameraUniforms();
+
+		RenderTriangle(triangleVerBuff);
+
+
+		//update our window now
+		//remember. all the rendering behind this.
+		SDL_GL_SwapWindow(window);
+	}
+	basicRender::~basicRender();
+}
+
+
+void basicRender::VertexSetup(GLuint VertexArrayID)
 {
 	//where we load our objects TODO class loading program for this
-	glGenVertexArrays(1, &vertexArrayID); //this returns an n VAO names in Array, and garants that those names are not the same as the ones called before the function
-	glBindVertexArray(vertexArrayID); //bind the VAO we are returning from glGenVertexArrays
+	glGenVertexArrays(1, &VertexArrayID); //this returns an n VAO names in Array, and garants that those names are not the same as the ones called before the function
+	glBindVertexArray(VertexArrayID); //bind the VAO we are returning from glGenVertexArrays
 }
 
-void NeptShark::SetColors()
+void basicRender::SetColors()
 {
 
 	//set the colour of the screen
@@ -35,7 +161,7 @@ void NeptShark::SetColors()
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void NeptShark::RenderTriangle(GLuint triangleVerBuff)
+void basicRender::RenderTriangle(GLuint triangleVerBuff)
 {
 
 	//we now get our triangle buffer and move it here for drawing //remember, once bind to a new object, this buffer previous contract is broken
@@ -76,7 +202,7 @@ void NeptShark::RenderTriangle(GLuint triangleVerBuff)
 	//glDisableVertexAttribArray(0); //we now disable our ability to draw, so we don't draw anything else unecessary.
 }
 
-void NeptShark::FullScreen()
+void basicRender::FullScreen()
 {
 
 }
