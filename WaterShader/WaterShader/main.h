@@ -8,12 +8,6 @@
 #include "SimpleCamera.h"
 #include "Vertex.h"
 
-#include "SDL_initialiser.h"
-
-#include "Window_Spawner.h"
-
-#include "Glew_Initialiser.h"
-
 #include<glm\glm.hpp>
 #include<glm\gtc\matrix_transform.hpp>
 #include<glm\gtc\type_ptr.hpp>

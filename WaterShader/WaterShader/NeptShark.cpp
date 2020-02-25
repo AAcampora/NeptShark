@@ -13,6 +13,8 @@ basicRender::basicRender()
 
 	fullscreen = false;
 
+	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+
 }
 
 void basicRender::InitWindow(SDL_Window **window)
@@ -52,20 +54,20 @@ void basicRender::MainLoop()
 	VertexSetup(VertexArrayID);
 
 	//load our shader programs
-	GLint basicProgramID = MyShaderCreator::LoadShaders("vert.glsl", "frag.glsl");
+	GLint basicProgramID = MyShaderCreator::LoadShaders("TextureVert.glsl", "TextureFrag.glsl");
 	if (basicProgramID < 0)
 	{
-		printf("Shaders %s and %s not loaded", "vert.glsl", "frag.glsl");
+		printf("Shaders %s and %s not loaded", "TextureVert.glsl", "TextureFrag.glsl");
 	}
 
 
 	//triangle buffer TODO ask brian how to extrapolate this
 	Vertex verticies[] =
 	{ //this will buff the position of the vertixes on the window
-		{1.0f, -1.0f, 0.0f, 1.0, 0.0f, 0.0f, 1.0f}, //vertex 0
-		{1.0f, 1.0f, 0.0f, 0.0, 1.0f, 0.0f, 1.0f}, //vertex 1
-		{-1.0f, 1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f},// vertex 2
-		{-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f} // vertex 3
+		{1.0f, -1.0f, 0.0f, 1.0, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f}, //vertex 0
+		{1.0f, 1.0f, 0.0f, 0.0, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f}, //vertex 1
+		{-1.0f, 1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f, 0.0f, 1.0f},// vertex 2
+		{-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f, 1.0f, 1.0f} // vertex 3
 	};
 
 	glGenBuffers(1, &triangleVerBuff); //we create a buffer, and we store our triangle ID
@@ -82,11 +84,16 @@ void basicRender::MainLoop()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * sizeof(indicies), indicies, GL_STATIC_DRAW);
 
+	GLuint baseTextureLocation = glGetUniformLocation(basicProgramID, "baseTexture");
+
 	SimpleCamera cam(basicProgramID);
+
+	basicRender::TextureLoader();
 	//SDl event structure, this is a queue that contains all the event strutctures of library, it can read the events and place them in itself
 	//useful when you need to determinate a certain event.
 	while (running)
 	{
+		
 		//pool for the events which have happend in this frame
 			//remember SDL_PollEvent requires a pointer value&
 		while (SDL_PollEvent(&ev))
@@ -130,9 +137,13 @@ void basicRender::MainLoop()
 		SetColors();
 		//draw using this program
 		glUseProgram(basicProgramID);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, baseTextureID);
 
+		
 		//send constant uniforms to shader 
 		cam.GenCameraUniforms();
+		glUniform1i(baseTextureLocation, 0);
 
 		RenderTriangle(triangleVerBuff);
 
@@ -144,6 +155,9 @@ void basicRender::MainLoop()
 	basicRender::~basicRender();
 }
 
+void basicRender::TextureLoader() {
+	GLuint baseTextureID = loadTextureFromFile("Crate");
+}
 
 void basicRender::VertexSetup(GLuint VertexArrayID)
 {
@@ -195,6 +209,16 @@ void basicRender::RenderTriangle(GLuint triangleVerBuff)
 	
 	);
 
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(
+		2,
+		2,
+		GL_FLOAT,
+		GL_FALSE,
+		sizeof(Vertex),
+		(void*)(7* sizeof(float))
+
+	);
 	//now that we have our buffer attributes settled, we can finally draw our triangle
 
 	//glDrawArrays(GL_TRIANGLES, 0, 3); //specifies what kidn of primitives to renderd. we provide a starting index, then we provide with the number of vertices

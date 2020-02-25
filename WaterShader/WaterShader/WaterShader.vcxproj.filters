@@ -33,12 +33,21 @@
     <ClCompile Include="InitLibs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="vert.glsl">
       <Filter>Shaders</Filter>
     </None>
     <None Include="frag.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="TextureFrag.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="TextureVert.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
@@ -59,6 +68,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InitLibs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,2 +1,4 @@
-﻿  main.cpp
-  WaterShader.vcxproj -> D:\Repo\NewWaterShader\NeptShark\WaterShader\x64\Debug\WaterShader.exe
+﻿     Creating library D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.lib and object D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.exp
+NeptShark.obj : error LNK2019: unresolved external symbol IMG_Init referenced in function "public: __cdecl Nept::basicRender::basicRender(void)" (??0basicRender@Nept@@QEAA@XZ)
+Texture.obj : error LNK2019: unresolved external symbol IMG_Load referenced in function "unsigned int __cdecl loadTextureFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadTextureFromFile@@YAIAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.exe : fatal error LNK1120: 2 unresolved externals
