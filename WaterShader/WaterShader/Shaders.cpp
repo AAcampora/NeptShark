@@ -4,7 +4,7 @@
 
 
 
-GLuint MyShaderCreator::LoadShaders(const char * vertex_file_path, const char * fragment_file_path)
+GLuint ShaderLoader::LoadShaders(const char * vertex_file_path, const char * fragment_file_path)
 {
 
 	// Create the shaders
@@ -50,13 +50,13 @@ GLuint MyShaderCreator::LoadShaders(const char * vertex_file_path, const char * 
 	GLint Result = GL_FALSE;
 	int InfoLogLength = NULL;
 
-	MyShaderCreator::CompileVertexShaders(vertex_file_path, VertexShaderCode, VertexShaderID, Result, InfoLogLength);
-	MyShaderCreator::CompileFragmentShaders(fragment_file_path, FragmentShaderCode, FragmentShaderID, Result, InfoLogLength);
+	ShaderLoader::CompileVertexShaders(vertex_file_path, VertexShaderCode, VertexShaderID, Result, InfoLogLength);
+	ShaderLoader::CompileFragmentShaders(fragment_file_path, FragmentShaderCode, FragmentShaderID, Result, InfoLogLength);
 	
 	// Link the program
 	printf("Linking program\n");
 	GLuint ProgramID = glCreateProgram();
-	MyShaderCreator::ShaderProgramLinker(ProgramID, VertexShaderID, FragmentShaderID, Result, InfoLogLength);
+	ShaderLoader::ShaderProgramLinker(ProgramID, VertexShaderID, FragmentShaderID, Result, InfoLogLength);
 
 
 	//Delete the shader compilation at the end 
@@ -69,7 +69,7 @@ GLuint MyShaderCreator::LoadShaders(const char * vertex_file_path, const char * 
 	return ProgramID;
 }
 
-void MyShaderCreator::CompileVertexShaders(const char *path, string code, GLuint id, GLint result, int logLength)
+void ShaderLoader::CompileVertexShaders(const char *path, string code, GLuint id, GLint result, int logLength)
 {
 	// Compile Vertex Shader
 	printf("Compiling shader : %s\n", path);
@@ -87,7 +87,7 @@ void MyShaderCreator::CompileVertexShaders(const char *path, string code, GLuint
 	}
 }
 
-void MyShaderCreator::CompileFragmentShaders(const char *path, string code, GLuint id, GLint result, int logLength)
+void ShaderLoader::CompileFragmentShaders(const char *path, string code, GLuint id, GLint result, int logLength)
 {
 	// Compile Fragment Shader
 	printf("Compiling shader : %s\n", path);
@@ -105,7 +105,7 @@ void MyShaderCreator::CompileFragmentShaders(const char *path, string code, GLui
 	}
 }
 
-void MyShaderCreator::ShaderProgramLinker(GLuint programID, GLuint vertID, GLuint fragID, GLint result, int logLength)
+void ShaderLoader::ShaderProgramLinker(GLuint programID, GLuint vertID, GLuint fragID, GLint result, int logLength)
 {
 	
 	glAttachShader(programID, vertID);

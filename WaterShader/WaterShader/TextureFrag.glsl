@@ -13,5 +13,5 @@ out vec4 colour;
 
 void main()
 {
-	colour = texture(baseTexture, VertexCoordOut);
+	 colour = texture(baseTexture,vertexTexCoordOut);
 }

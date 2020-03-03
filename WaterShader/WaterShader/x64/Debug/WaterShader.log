@@ -1,4 +1,9 @@
-﻿     Creating library D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.lib and object D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.exp
-NeptShark.obj : error LNK2019: unresolved external symbol IMG_Init referenced in function "public: __cdecl Nept::basicRender::basicRender(void)" (??0basicRender@Nept@@QEAA@XZ)
-Texture.obj : error LNK2019: unresolved external symbol IMG_Load referenced in function "unsigned int __cdecl loadTextureFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadTextureFromFile@@YAIAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
-D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.exe : fatal error LNK1120: 2 unresolved externals
+﻿  Factory.cpp
+  NeptShark.cpp
+D:\Alessio\NeptShark\WaterShader\WaterShader\Factory.h(77,5): warning C4244: 'argument': conversion from 'GLsizeiptr' to 'GLint', possible loss of data
+D:\Alessio\NeptShark\WaterShader\WaterShader\Factory.h(77,5): warning C4244: 'argument': conversion from 'GLsizeiptr' to 'GLint', possible loss of data
+  main.cpp
+D:\Alessio\NeptShark\WaterShader\WaterShader\NeptShark.cpp(153,33): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+  Generating Code...
+D:\Alessio\NeptShark\WaterShader\WaterShader\Factory.h(77,5): warning C4244: 'argument': conversion from 'GLsizeiptr' to 'GLint', possible loss of data
+  WaterShader.vcxproj -> D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.exe

@@ -9,7 +9,7 @@ using namespace std;
 #include <vector>
 #include <fstream>
 
-class MyShaderCreator
+class ShaderLoader
 {
 public:
 	static GLuint LoadShaders(const char * vertex_file_path, const char * fragment_file_path);

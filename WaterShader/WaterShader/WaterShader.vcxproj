@@ -24,6 +24,7 @@
     <ClCompile Include="NeptShark.cpp" />
     <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="SimpleCamera.cpp" />
+    <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +34,7 @@
     <None Include="vert.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Factory.h" />
     <ClInclude Include="InitLibs.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NeptShark.h" />
@@ -110,12 +112,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\assimp-4.1.0\include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\glew-2.1.0\include\GL;$(SolutionDir)Libraries\SDL2_image-2.0.1\include;$(SolutionDir)Libraries\SDL2-2.0.6\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\assimp-4.1.0\include\assimp;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\glew-2.1.0\include\GL;$(SolutionDir)Libraries\SDL2_image-2.0.1\include;$(SolutionDir)Libraries\SDL2-2.0.6\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\assimp-4.1.0\lib\x64;$(SolutionDir)Libraries\SDL2-2.0.6\lib\x64;$(SolutionDir)Libraries\SDL2_image-2.0.1\lib\x64;$(SolutionDir)Libraries\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OpenGL32.lib;glew32.lib;SDL2.lib;SDL2main.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;glew32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
