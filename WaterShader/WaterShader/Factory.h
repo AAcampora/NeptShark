@@ -51,7 +51,7 @@ public:
 
 #pragma endregion 
 
-#pragma region Vertex Atrribute Pointer
+#pragma region Vertex Attribute Pointer
 
 
 

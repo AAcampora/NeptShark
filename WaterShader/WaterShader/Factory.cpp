@@ -25,15 +25,15 @@ BufferFact* Factory::createBuffer(int type, GLuint bufferID, GLsizeiptr size, co
 
 VertexAttribFact* Factory::createVertAttrib(int type, GLuint index, GLsizeiptr size, GLsizei stride, const void* pointer)
 {
-	VertexAttribFact * vf = NULL;
+	VertexAttribFact* vf = NULL;
 
 	switch (type)
 	{
-		case 1: {
-			vf = new VertAttribFloat;
-			break;
-		}
-			
+	case 1: {
+		vf = new VertAttribFloat;
+		break;
+	}
+
 	}
 	vf->EnableVertexArray(index);
 	vf->VertexAttribPointer(index, size, stride, pointer);

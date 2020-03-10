@@ -1,9 +1,4 @@
 ﻿  Factory.cpp
-  NeptShark.cpp
 D:\Alessio\NeptShark\WaterShader\WaterShader\Factory.h(77,5): warning C4244: 'argument': conversion from 'GLsizeiptr' to 'GLint', possible loss of data
-D:\Alessio\NeptShark\WaterShader\WaterShader\Factory.h(77,5): warning C4244: 'argument': conversion from 'GLsizeiptr' to 'GLint', possible loss of data
-  main.cpp
-D:\Alessio\NeptShark\WaterShader\WaterShader\NeptShark.cpp(153,33): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-  Generating Code...
-D:\Alessio\NeptShark\WaterShader\WaterShader\Factory.h(77,5): warning C4244: 'argument': conversion from 'GLsizeiptr' to 'GLint', possible loss of data
+     Creating library D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.lib and object D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.exp
   WaterShader.vcxproj -> D:\Alessio\NeptShark\WaterShader\x64\Debug\WaterShader.exe

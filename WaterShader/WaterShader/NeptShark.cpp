@@ -69,7 +69,6 @@ void basicRender::MainLoop()
 		{-1.0f, 1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f, 0.0f, 1.0f},// vertex 2
 		{-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,1.0f, 1.0f, 1.0f, 1.0f} // vertex 3
 	};
-
 	
 
 	glGenBuffers(1, &triangleVerBuff); //we create a buffer, and we store our triangle ID
